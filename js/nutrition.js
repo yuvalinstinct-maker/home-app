@@ -50,6 +50,16 @@ export function calcIngredient(ing) {
     kcal: g * item.kcal / 100, protein: g * item.protein / 100 };
 }
 
+// Scale recipe quantities without rounding. Rounding ingredient amounts before
+// nutrition calculation changes the per-serving result, especially for pieces
+// (for example 1 onion / 4 servings becoming 0.3 instead of 0.25).
+export function scaleIngredients(ingredients, scale) {
+  return (ingredients || []).map(ing => ({
+    ...ing,
+    amount: ing.amount != null ? Number(ing.amount) * scale : null,
+  }));
+}
+
 export function calcRecipe(ingredients, servings) {
   let kcal = 0, protein = 0; const unmatched = [];
   const details = (ingredients || []).map(ing => {
