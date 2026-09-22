@@ -1,5 +1,5 @@
 // Service worker: cache-first shell, network-first API, offline fallback.
-const CACHE = 'homeapp-v1';
+const CACHE = 'homeapp-v2';
 const SHELL = [
   './', './index.html', './css/app.css', './manifest.webmanifest',
   './js/app.js', './js/db.js', './js/config.js', './js/nutrition.js', './js/nutrition_data.js', './js/match.js',
