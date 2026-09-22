@@ -33,7 +33,11 @@ async function idbGet(store, key) {
 }
 async function idbSet(store, key, val) {
   const db = await idbOpen();
-  return new Promise(res => { const q = db.transaction(store, 'readwrite').objectStore(store).put(val, key); q.onsuccess = () => res(); q.onerror = () => res(); });
+  return new Promise(res => {
+    const os = db.transaction(store, 'readwrite').objectStore(store);
+    const q = key == null ? os.put(val) : os.put(val, key);
+    q.onsuccess = () => res(); q.onerror = () => res();
+  });
 }
 async function idbAll(store) {
   const db = await idbOpen();

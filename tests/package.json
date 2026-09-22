@@ -1,0 +1,1 @@
+{"name":"home-app-tests","private":true,"type":"module","scripts":{"test":"node smoke.mjs"},"dependencies":{"@supabase/supabase-js":"^2","fake-indexeddb":"^6"}}
