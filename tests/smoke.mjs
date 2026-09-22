@@ -122,7 +122,7 @@ await test('Offline queue: writes while offline replay in order on reconnect', a
   const fs = await import('node:fs');
   let src = fs.readFileSync(new URL('../js/db.js', import.meta.url), 'utf8');
   src = src.replace("from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'", "from '@supabase/supabase-js'");
-  src = src.replace("import { SUPABASE_URL, SUPABASE_KEY } from './config.js';",
+  src = src.replace(/import { SUPABASE_URL, SUPABASE_KEY } from '\.\/config\.js[^']*';/,
     "const SUPABASE_URL = '" + SB_URL + "'; const SUPABASE_KEY = '" + KEY + "';");
   fs.writeFileSync(new URL('./.db-shim.mjs', import.meta.url), src);
   const db = await import('./.db-shim.mjs');
