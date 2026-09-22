@@ -1,7 +1,7 @@
 // מזווה: חיפוש, פילטרים, כמויות גסות, פתוח/תוקף, פעולות מהירות.
-import * as db from '../db.js';
-import { esc, toast, openSheet, closeSheet } from '../app.js';
-import { catalog } from '../nutrition.js';
+import * as db from '../db.js?v=3';
+import { esc, toast, openSheet, closeSheet } from '../app.js?v=3';
+import { catalog } from '../nutrition.js?v=3';
 
 const LOC_ICON = { fridge: '🧊', freezer: '❄️', pantry: '🗄️' };
 const LOC_NAME = { fridge: 'מקרר', freezer: 'מקפיא', pantry: 'מזווה' };

@@ -1,6 +1,6 @@
 // Nutrition engine: mirrors scripts/nutrition_calc.py. Values per 100g/ml.
 // Catalog is loaded from Supabase (global + household corrections), with bundled fallback.
-import FALLBACK from './nutrition_data.js';
+import FALLBACK from './nutrition_data.js?v=3';
 
 const UNITS = FALLBACK.units;
 let CATALOG = null;   // key -> {key,name_he,aliases,kcal,protein,piece_grams,household}

@@ -1,8 +1,8 @@
 // שבוע: 7 ימים, ארוחת ערב קודם, הוספת חסרים לקניות עם מסך סקירה.
-import * as db from '../db.js';
-import { esc, toast, openSheet, closeSheet, navigate } from '../app.js';
-import { calcRecipe } from '../nutrition.js';
-import { pantryMatch } from '../match.js';
+import * as db from '../db.js?v=3';
+import { esc, toast, openSheet, closeSheet, navigate } from '../app.js?v=3';
+import { calcRecipe } from '../nutrition.js?v=3';
+import { pantryMatch } from '../match.js?v=3';
 
 const DAY_NAMES = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
 

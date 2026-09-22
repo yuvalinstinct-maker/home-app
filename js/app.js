@@ -1,11 +1,11 @@
 // App shell: auth flow, router, bottom nav, shared UI helpers.
-import * as db from './db.js';
-import { loadCatalog } from './nutrition.js';
-import { renderHome } from './views/home.js';
-import { renderPantry } from './views/pantry.js';
-import { renderRecipes, renderRecipeDetail } from './views/recipes.js';
-import { renderWeek } from './views/week.js';
-import { renderShopping } from './views/shopping.js';
+import * as db from './db.js?v=3';
+import { loadCatalog } from './nutrition.js?v=3';
+import { renderHome } from './views/home.js?v=3';
+import { renderPantry } from './views/pantry.js?v=3';
+import { renderRecipes, renderRecipeDetail } from './views/recipes.js?v=3';
+import { renderWeek } from './views/week.js?v=3';
+import { renderShopping } from './views/shopping.js?v=3';
 
 export const $ = sel => document.querySelector(sel);
 export function esc(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; }
