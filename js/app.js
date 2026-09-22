@@ -130,7 +130,7 @@ function renderLogin() {
       <p class="auth-sub">מזווה, מתכונים וקניות - משותף ליובל ורון</p>
       <div class="field"><label>אימייל</label><input id="email" type="email" inputmode="email" dir="ltr" placeholder="you@example.com" autocomplete="email"></div>
       <div class="auth-err" id="err"></div>
-      <button class="btn" id="send">שלחו לי קוד כניסה</button>
+      <button class="btn" id="send">שלחו לי קישור כניסה</button>
     </div>`;
   const emailEl = $('#email');
   emailEl.focus();
@@ -138,32 +138,23 @@ function renderLogin() {
     const email = emailEl.value.trim();
     if (!email || !email.includes('@')) { $('#err').textContent = 'כתובת אימייל לא תקינה'; return; }
     $('#send').textContent = 'שולח...'; $('#send').disabled = true;
-    try { await db.sendOtp(email); renderCode(email); }
-    catch (e) { $('#err').textContent = 'שגיאה בשליחה: ' + (e.message || e); $('#send').textContent = 'שלחו לי קוד כניסה'; $('#send').disabled = false; }
+    try { await db.sendOtp(email); renderSent(email); }
+    catch (e) { $('#err').textContent = 'שגיאה בשליחה: ' + (e.message || e); $('#send').textContent = 'שלחו לי קישור כניסה'; $('#send').disabled = false; }
   };
   emailEl.addEventListener('keydown', e => { if (e.key === 'Enter') $('#send').click(); });
 }
 
-function renderCode(email) {
+function renderSent(email) {
   const app = $('#app');
   app.innerHTML = `
     <div class="auth-wrap">
       <div class="auth-logo">📬</div>
-      <h1 class="auth-title">קוד נשלח</h1>
-      <p class="auth-sub">נשלח קוד בן 6 ספרות ל-${esc(email)}.<br>בדקו גם בספאם.</p>
-      <div class="field"><label>קוד</label><input id="code" type="text" inputmode="numeric" dir="ltr" maxlength="8" placeholder="123456" style="text-align:center;font-size:24px;letter-spacing:6px"></div>
-      <div class="auth-err" id="err"></div>
-      <button class="btn" id="verify">כניסה</button>
+      <h1 class="auth-title">קישור נשלח</h1>
+      <p class="auth-sub">נשלח קישור כניסה ל-${esc(email)}.<br>לחצו עליו באותו המכשיר - והאפליקציה תיפתח מחוברת.<br>בדקו גם בספאם.</p>
+      <button class="btn secondary" id="resend">לא קיבלתם? שליחה חוזרת</button>
       <button class="btn ghost" id="back">חזרה</button>
     </div>`;
-  $('#code').focus();
-  $('#verify').onclick = async () => {
-    const code = $('#code').value.trim();
-    $('#verify').textContent = 'בודק...'; $('#verify').disabled = true;
-    try { await db.verifyOtp(email, code); boot(); }
-    catch (e) { $('#err').textContent = 'קוד שגוי או שפג תוקפו'; $('#verify').textContent = 'כניסה'; $('#verify').disabled = false; }
-  };
-  $('#code').addEventListener('keydown', e => { if (e.key === 'Enter') $('#verify').click(); });
+  $('#resend').onclick = async () => { try { await db.sendOtp(email); toast('נשלח שוב'); } catch (e) { toast('שגיאה בשליחה'); } };
   $('#back').onclick = renderLogin;
 }
 

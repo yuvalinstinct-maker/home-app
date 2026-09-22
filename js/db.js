@@ -2,7 +2,9 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 import { SUPABASE_URL, SUPABASE_KEY } from './config.js';
 
-export const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+export const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: { flowType: 'implicit', detectSessionInUrl: true, persistSession: true, autoRefreshToken: true },
+});
 
 export const TABLES = ['pantry_items','recipes','recipe_ingredients','ratings','meal_plan_entries','shopping_items','ingredient_nutrition'];
 
@@ -64,7 +66,10 @@ export async function getSession() {
   return state.user;
 }
 export async function sendOtp(email) {
-  const { error } = await sb.auth.signInWithOtp({ email, options: { shouldCreateUser: true } });
+  const { error } = await sb.auth.signInWithOtp({ email, options: {
+    shouldCreateUser: true,
+    emailRedirectTo: 'https://yuvalinstinct-maker.github.io/home-app/',
+  } });
   if (error) throw error;
 }
 export async function verifyOtp(email, token) {
