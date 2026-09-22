@@ -1,0 +1,77 @@
+{
+  "household": {"name": "יובל ורון", "join_code": "BAYIT26"},
+  "pantry": [
+    {"name": "משקה חלבון קרמל מלוח 350 מ\"ל", "category": "חלב וביצים", "quantity_state": "full", "is_protein": true, "location": "fridge", "package_size": "350 מ\"ל"},
+    {"name": "משקה חלבון שוקולד 350 מ\"ל", "category": "חלב וביצים", "quantity_state": "full", "is_protein": true, "location": "fridge", "package_size": "350 מ\"ל"},
+    {"name": "חלב 1%", "category": "חלב וביצים", "quantity_state": "half", "is_open": true, "opened_days_ago": 2, "location": "fridge"},
+    {"name": "יוגורט חלבון טבעי", "category": "חלב וביצים", "quantity_state": "full", "is_protein": true, "location": "fridge"},
+    {"name": "גבינת קוטג'", "category": "חלב וביצים", "quantity_state": "half", "is_protein": true, "location": "fridge"},
+    {"name": "שמנת 9%", "category": "חלב וביצים", "quantity_state": "full", "location": "fridge"},
+    {"name": "קקאו", "category": "מזווה ושימורים", "quantity_state": "low", "is_open": true, "opened_days_ago": 12, "location": "pantry"},
+    {"name": "ממתיק Sweetango", "category": "מזווה ושימורים", "quantity_state": "half", "is_open": true, "opened_days_ago": 20, "location": "pantry"},
+    {"name": "קסנטן", "category": "מזווה ושימורים", "quantity_state": "full", "is_open": true, "opened_days_ago": 12, "location": "pantry"},
+    {"name": "אטריות", "category": "מזווה ושימורים", "quantity_state": "full", "location": "pantry", "package_size": "250 גרם"},
+    {"name": "פרגיות", "category": "קפואים", "quantity_state": "full", "is_protein": true, "location": "freezer", "package_size": "1 ק\"ג"}
+  ],
+  "recipes": [
+    {
+      "title": "גלידת חלבון שוקולד (נינג'ה קרימי)",
+      "time_minutes": 10,
+      "servings": 2,
+      "notes": "קרימי Deluxe. מקפיאים 24 שעות, סופינג על Gelato. אם יוצא קרה מדי - Respin עם שתי כפות משקה חלבון.",
+      "steps": [
+        "מערבבים בקערה את משקה החלבון, היוגורט, הקקאו, הממתיק והקסנטן עד אחידות.",
+        "יוצקים לפיינט של הקרימי עד קו ה-MAX ומקפיאים 24 שעות.",
+        "מריצים על תוכנית Gelato. אם אבקתי - Respin עם שתי כפות משקה חלבון."
+      ],
+      "ingredients": [
+        {"name": "משקה חלבון שוקולד", "amount": 350, "unit": "מ\"ל", "nutrition_key": "protein_drink"},
+        {"name": "יוגורט חלבון טבעי", "amount": 200, "unit": "גרם", "nutrition_key": "protein_yogurt"},
+        {"name": "קקאו", "amount": 10, "unit": "גרם", "nutrition_key": "cocoa"},
+        {"name": "ממתיק", "amount": 15, "unit": "גרם", "nutrition_key": "sweetener"},
+        {"name": "קסנטן", "amount": 0.5, "unit": "כפית", "nutrition_key": "xanthan"}
+      ]
+    },
+    {
+      "title": "גלידת חלבון קרמל מלוח (ללא קוטג')",
+      "time_minutes": 10,
+      "servings": 2,
+      "notes": "גרסה בלי קוטג'. השמנת נותנת מרקם חלק.",
+      "steps": [
+        "מערבבים את כל המרכיבים עד אחידות.",
+        "יוצקים לפיינט ומקפיאים 24 שעות.",
+        "מריצים על Gelato, Respin במידת הצורך."
+      ],
+      "ingredients": [
+        {"name": "משקה חלבון קרמל מלוח", "amount": 350, "unit": "מ\"ל", "nutrition_key": "protein_drink"},
+        {"name": "שמנת 9%", "amount": 150, "unit": "גרם", "nutrition_key": "cream9"},
+        {"name": "יוגורט חלבון טבעי", "amount": 100, "unit": "גרם", "nutrition_key": "protein_yogurt"},
+        {"name": "קסנטן", "amount": 0.5, "unit": "כפית", "nutrition_key": "xanthan"}
+      ]
+    },
+    {
+      "title": "נודלס ווק עם פרגיות",
+      "time_minutes": 25,
+      "servings": 4,
+      "notes": "אש גבוהה, לא לדחוס את הווק. אפשר להחליף ירקות לפי מה שיש.",
+      "steps": [
+        "מבשלים את האטריות לפי ההוראות, שוטפים ומסננים.",
+        "מטגנים פרגיות בחתיכות באש גבוהה 4-5 דקות, מוציאים.",
+        "מטגנים בצל, גזר, פלפל ופטריות 3-4 דקות. מוסיפים שום וג'ינג'ר לדקה.",
+        "מחזירים את הפרגיות, מוסיפים אטריות ורוטב סויה, מערבבים דקה-שתיים ומגישים."
+      ],
+      "ingredients": [
+        {"name": "פרגיות", "amount": 400, "unit": "גרם", "nutrition_key": "pargiyot"},
+        {"name": "אטריות", "amount": 250, "unit": "גרם", "nutrition_key": "noodles_dry"},
+        {"name": "שמן", "amount": 1, "unit": "כף", "nutrition_key": "olive_oil"},
+        {"name": "רוטב סויה", "amount": 60, "unit": "מ\"ל", "nutrition_key": "soy_sauce"},
+        {"name": "בצל", "amount": 1, "unit": "יחידה", "nutrition_key": "onion"},
+        {"name": "פלפל אדום", "amount": 1, "unit": "יחידה", "nutrition_key": "bell_pepper"},
+        {"name": "פטריות", "amount": 150, "unit": "גרם", "nutrition_key": "mushroom"},
+        {"name": "גזר", "amount": 1, "unit": "יחידה", "nutrition_key": "carrot"},
+        {"name": "שום", "amount": 3, "unit": "יחידה", "nutrition_key": "garlic"},
+        {"name": "ג'ינג'ר", "amount": 10, "unit": "גרם", "nutrition_key": "ginger"}
+      ]
+    }
+  ]
+}
