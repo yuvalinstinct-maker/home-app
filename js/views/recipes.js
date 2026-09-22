@@ -2,7 +2,7 @@
 import * as db from '../db.js?v=4';
 import { esc, toast, openSheet, closeSheet, navigate, avatar, avColor, $ } from '../app.js?v=4';
 import { calcRecipe, calcIngredient, packageFit, catalog } from '../nutrition.js?v=4';
-import { pantryMatch } from '../match.js?v=4';
+import { pantryMatch, guessSection, localDateKey } from '../match.js?v=5';
 
 const RECIPE_EMOJI = ['🍲', '🍝', '🍳', '🥗', '🍦', '🍗', '🥘', '🫕', '🍜', '🥪'];
 
@@ -131,7 +131,7 @@ export function renderRecipeDetail(el, id) {
       for (const ing of m.missing) {
         await db.mutate('shopping_items', 'insert', {
           name: ing.name, qty: ing.amount, unit: ing.unit,
-          section: 'אחר', added_by: db.myName(), recipe_id: id });
+          section: guessSection(ing.name), added_by: db.myName(), recipe_id: id });
       }
       toast(`${m.missing.length} חסרים נוספו לקניות 🛒`);
     };
@@ -142,7 +142,7 @@ export function renderRecipeDetail(el, id) {
       const sheet = openSheet(`<h3>לאיזה יום?</h3>` + [0,1,2,3,4,5,6].map(i => {
         const d = new Date(); d.setDate(d.getDate() + i);
         const names = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
-        return `<button class="btn secondary" style="margin-bottom:8px" data-d="${d.toISOString().slice(0,10)}">${i === 0 ? 'היום' : i === 1 ? 'מחר' : 'יום ' + names[d.getDay()]} (${d.getDate()}.${d.getMonth()+1})</button>`;
+        return `<button class="btn secondary" style="margin-bottom:8px" data-d="${localDateKey(d)}">${i === 0 ? 'היום' : i === 1 ? 'מחר' : 'יום ' + names[d.getDay()]} (${d.getDate()}.${d.getMonth()+1})</button>`;
       }).join(''));
       sheet.querySelectorAll('button[data-d]').forEach(b => b.onclick = async () => {
         await db.mutate('meal_plan_entries', 'insert', { day: b.dataset.d, slot: 'dinner', recipe_id: id, created_by: db.myName() });

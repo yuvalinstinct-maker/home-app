@@ -2,7 +2,7 @@
 import * as db from '../db.js?v=4';
 import { esc, navigate, avatar, $ } from '../app.js?v=4';
 import { calcRecipe } from '../nutrition.js?v=4';
-import { pantryMatch, fmtKcalProtein } from '../match.js?v=4';
+import { pantryMatch, fmtKcalProtein, localDateKey } from '../match.js?v=5';
 
 function daysAgo(d) { if (!d) return null; return Math.floor((Date.now() - new Date(d).getTime()) / 86400000); }
 
@@ -27,7 +27,7 @@ export function renderHome(el) {
   const today = new Date();
   const days = [...Array(4)].map((_, i) => {
     const d = new Date(today); d.setDate(d.getDate() + i);
-    const key = d.toISOString().slice(0, 10);
+    const key = localDateKey(d);
     const e = plan.find(p => p.day === key && p.slot === 'dinner');
     const rec = e && e.recipe_id ? recipes.find(r => r.id === e.recipe_id) : null;
     return { d, key, label: e ? (rec ? rec.title : e.label) : null };

@@ -165,6 +165,14 @@ await test('Cleanup test rows', async () => {
   await A.from('meal_plan_entries').delete().like('note', 'טסט%');
 });
 
+await test('Local calendar dates do not shift to UTC', async () => {
+  const { localDateKey } = await import('../js/match.js');
+  const original = process.env.TZ;
+  process.env.TZ = 'America/Los_Angeles';
+  assert.equal(localDateKey(new Date(2026, 8, 22, 23, 30)), '2026-09-22');
+  process.env.TZ = original;
+});
+
 const fails = results.filter(r => r[0] === 'FAIL');
 console.log(`\n=== ${results.length - fails.length}/${results.length} passed ===`);
 process.exit(fails.length ? 1 : 0);

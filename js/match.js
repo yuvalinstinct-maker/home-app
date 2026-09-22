@@ -45,3 +45,11 @@ export function guessSection(name) {
   for (const [re, sec] of rules) if (re.test(n)) return sec;
   return 'אחר';
 }
+
+// Format a Date as the user's local calendar day, never UTC.
+export function localDateKey(d = new Date()) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}

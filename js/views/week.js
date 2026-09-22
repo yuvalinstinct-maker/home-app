@@ -2,7 +2,7 @@
 import * as db from '../db.js?v=4';
 import { esc, toast, openSheet, closeSheet, navigate, $ } from '../app.js?v=4';
 import { calcRecipe } from '../nutrition.js?v=4';
-import { pantryMatch, guessSection } from '../match.js?v=4';
+import { pantryMatch, guessSection, localDateKey } from '../match.js?v=5';
 
 const DAY_NAMES = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
 
@@ -15,7 +15,7 @@ export function renderWeek(el) {
 
   const days = [...Array(7)].map((_, i) => {
     const d = new Date(today); d.setDate(d.getDate() + i);
-    const key = d.toISOString().slice(0, 10);
+    const key = localDateKey(d);
     return { d, key, entries: plan.filter(p => p.day === key) };
   });
 

@@ -2,6 +2,7 @@
 import * as db from '../db.js?v=4';
 import { esc, toast, openSheet, closeSheet, $ } from '../app.js?v=4';
 import { catalog } from '../nutrition.js?v=4';
+import { localDateKey } from '../match.js?v=5';
 
 const LOC_ICON = { fridge: '🧊', freezer: '❄️', pantry: '🗄️' };
 const LOC_NAME = { fridge: 'מקרר', freezer: 'מקפיא', pantry: 'מזווה' };
@@ -94,7 +95,7 @@ function bindItems(root) {
     card.querySelector('.a-open').onclick = async () => {
       await db.mutate('pantry_items', 'update', p.is_open
         ? { is_open: false, opened_at: null }
-        : { is_open: true, opened_at: new Date().toISOString().slice(0, 10) }, id);
+        : { is_open: true, opened_at: localDateKey() }, id);
     };
     card.querySelector('.a-shop').onclick = async () => {
       await db.mutate('shopping_items', 'insert', { name: p.name, section: p.category || 'אחר', added_by: db.myName() });
@@ -147,7 +148,7 @@ function addSheet() {
       location: sheet.querySelector('#np-loc').value,
       quantity_state: sheet.querySelector('#np-qty').value,
       package_size: sheet.querySelector('#np-pkg').value.trim() || null,
-      is_open: isOpen, opened_at: isOpen ? new Date().toISOString().slice(0, 10) : null,
+      is_open: isOpen, opened_at: isOpen ? localDateKey() : null,
       is_protein: sheet.querySelector('#np-protein').checked,
       added_by: db.myName(),
     });
