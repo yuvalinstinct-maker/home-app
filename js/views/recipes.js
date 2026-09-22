@@ -1,7 +1,7 @@
 // מתכונים: כרטיסים, דירוג זוגי, פירוט קלוריות, מצב בישול, package-fit.
 import * as db from '../db.js?v=4';
 import { esc, toast, openSheet, closeSheet, navigate, avatar, avColor, $ } from '../app.js?v=4';
-import { calcRecipe, calcIngredient, packageFit, catalog } from '../nutrition.js?v=4';
+import { calcRecipe, calcIngredient, packageFit, catalog, scaleIngredients } from '../nutrition.js?v=5';
 import { pantryMatch, guessSection, localDateKey } from '../match.js?v=5';
 
 const RECIPE_EMOJI = ['🍲', '🍝', '🍳', '🥗', '🍦', '🍗', '🥘', '🫕', '🍜', '🥪'];
@@ -57,7 +57,7 @@ export function renderRecipeDetail(el, id) {
   function draw() {
     const base = db.getData('recipe_ingredients').filter(x => x.recipe_id === id);
     const scale = servings / (r.servings || 1);
-    const scaled = base.map(i => ({ ...i, amount: i.amount != null ? Math.round(i.amount * scale * 10) / 10 : null }));
+    const scaled = scaleIngredients(base, scale);
     const m = pantryMatch(scaled, pantry);
     const calc = calcRecipe(scaled, servings);
 
@@ -105,7 +105,7 @@ export function renderRecipeDetail(el, id) {
           return `<div class="ing-row">
             <span class="ing-check ${has ? 'have' : 'miss'}">${has ? '✓' : '!'}</span>
             <span class="ing-name">${esc(ing.name)}${ing.matched === false ? ' <span class="badge miss" title="אין נתון תזונה">?</span>' : ''}</span>
-            <span class="ing-amt">${ing.amount != null ? ing.amount + ' ' + (ing.unit || 'יח׳') : ''}</span>
+            <span class="ing-amt">${ing.amount != null ? (Math.round(ing.amount * 100) / 100) + ' ' + (ing.unit || 'יח׳') : ''}</span>
           </div>`;}).join('')}
       </div>
 
