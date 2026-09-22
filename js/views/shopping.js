@@ -1,6 +1,6 @@
 // קניות: רשימה משותפת חיה לפי מחלקות בסופר, מי הוסיף, checkoff חי, סיום קנייה למזווה.
-import * as db from '../db.js?v=3';
-import { esc, toast, openSheet, closeSheet, avatar, avColor } from '../app.js?v=3';
+import * as db from '../db.js?v=4';
+import { esc, toast, openSheet, closeSheet, avatar, avColor, $ } from '../app.js?v=4';
 
 const SECTIONS = ['ירקות ופירות', 'חלב וביצים', 'בשר ודגים', 'מאפים ולחם', 'מזווה ושימורים', 'קפואים', 'חטיפים ושתייה', 'ניקיון וטואלטיקה', 'אחר'];
 const SEC_ICON = { 'ירקות ופירות': '🥬', 'חלב וביצים': '🥛', 'בשר ודגים': '🍗', 'מאפים ולחם': '🍞', 'מזווה ושימורים': '🥫', 'קפואים': '❄️', 'חטיפים ושתייה': '🍪', 'ניקיון וטואלטיקה': '🧴', 'אחר': '📦' };

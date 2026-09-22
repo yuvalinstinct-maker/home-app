@@ -1,8 +1,8 @@
 // מתכונים: כרטיסים, דירוג זוגי, פירוט קלוריות, מצב בישול, package-fit.
-import * as db from '../db.js?v=3';
-import { esc, toast, openSheet, closeSheet, navigate, avatar, avColor } from '../app.js?v=3';
-import { calcRecipe, calcIngredient, packageFit, catalog } from '../nutrition.js?v=3';
-import { pantryMatch } from '../match.js?v=3';
+import * as db from '../db.js?v=4';
+import { esc, toast, openSheet, closeSheet, navigate, avatar, avColor, $ } from '../app.js?v=4';
+import { calcRecipe, calcIngredient, packageFit, catalog } from '../nutrition.js?v=4';
+import { pantryMatch } from '../match.js?v=4';
 
 const RECIPE_EMOJI = ['🍲', '🍝', '🍳', '🥗', '🍦', '🍗', '🥘', '🫕', '🍜', '🥪'];
 

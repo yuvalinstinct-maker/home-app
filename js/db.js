@@ -1,6 +1,6 @@
 // Data layer: Supabase + IndexedDB cache + offline outbox + realtime.
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-import { SUPABASE_URL, SUPABASE_KEY } from './config.js?v=3';
+import { SUPABASE_URL, SUPABASE_KEY } from './config.js?v=4';
 
 export const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
   auth: { flowType: 'implicit', detectSessionInUrl: true, persistSession: true, autoRefreshToken: true },

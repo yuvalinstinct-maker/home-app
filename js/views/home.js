@@ -1,8 +1,8 @@
 // בית: מה מבשלים הערב, לסיים קודם, פעולות מהירות, תצוגת שבוע.
-import * as db from '../db.js?v=3';
-import { esc, navigate, avatar } from '../app.js?v=3';
-import { calcRecipe } from '../nutrition.js?v=3';
-import { pantryMatch, fmtKcalProtein } from '../match.js?v=3';
+import * as db from '../db.js?v=4';
+import { esc, navigate, avatar, $ } from '../app.js?v=4';
+import { calcRecipe } from '../nutrition.js?v=4';
+import { pantryMatch, fmtKcalProtein } from '../match.js?v=4';
 
 function daysAgo(d) { if (!d) return null; return Math.floor((Date.now() - new Date(d).getTime()) / 86400000); }
 
