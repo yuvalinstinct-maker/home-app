@@ -2,7 +2,7 @@
 import * as db from '../db.js?v=4';
 import { esc, toast, openSheet, closeSheet, navigate, $ } from '../app.js?v=4';
 import { calcRecipe } from '../nutrition.js?v=4';
-import { pantryMatch } from '../match.js?v=4';
+import { pantryMatch, guessSection } from '../match.js?v=4';
 
 const DAY_NAMES = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
 
@@ -102,7 +102,7 @@ function reviewMissing(days, recipes, ings, pantry) {
     let n = 0;
     for (const cb of sheet.querySelectorAll('input[type=checkbox]:checked')) {
       const m = missing[Number(cb.dataset.i)];
-      await db.mutate('shopping_items', 'insert', { name: m.name, qty: m.amount, unit: m.unit, section: 'אחר', added_by: db.myName(), recipe_id: m.recipe_id });
+      await db.mutate('shopping_items', 'insert', { name: m.name, qty: m.amount, unit: m.unit, section: guessSection(m.name), added_by: db.myName(), recipe_id: m.recipe_id });
       n++;
     }
     closeSheet(); toast(`${n} פריטים נוספו לקניות 🛒`);
