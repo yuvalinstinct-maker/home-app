@@ -3,7 +3,7 @@ import * as db from './db.js?v=4';
 import { loadCatalog } from './nutrition.js?v=4';
 import { renderHome } from './views/home.js?v=4';
 import { renderPantry } from './views/pantry.js?v=4';
-import { renderRecipes, renderRecipeDetail } from './views/recipes.js?v=4';
+import { renderRecipes, renderRecipeDetail } from './views/recipes.js?v=5';
 import { renderWeek } from './views/week.js?v=4';
 import { renderShopping } from './views/shopping.js?v=4';
 
